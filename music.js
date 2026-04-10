@@ -1,23 +1,15 @@
-const music=document.getElementById("bgMusic")
-const selector=document.getElementById("musicSelect")
+const audio = new Audio();
+const playlist = {
+  "deep": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+  "dream": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+};
 
-function playMusic(){
-
-music.src=selector.value
-music.play()
-
-localStorage.setItem("music",selector.value)
-
+function playMusic() {
+  const select = document.getElementById("musicSelect");
+  audio.src = playlist[select.value];
+  audio.play();
 }
 
-function pauseMusic(){
-
-music.pause()
-
-}
-
-if(localStorage.getItem("music")){
-
-music.src=localStorage.getItem("music")
-
+function pauseMusic() {
+  audio.pause();
 }
