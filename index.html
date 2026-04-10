@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🏛 Swan Ocean – Atlantis Archive</title>
+
+<style>
+
+:root{
+--glass:rgba(0,30,60,.65);
+--border:rgba(255,255,255,.15);
+--accent:#00e5ff;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:Segoe UI,Arial;
+
+background:
+linear-gradient(rgba(0,30,50,.55),rgba(0,15,30,.75)),
+url("https://images.unsplash.com/photo-1582967788606-a171c1080cb0?q=80&w=2000")
+center/cover fixed;
+
+color:#e0f7fa;
+
+min-height:100vh;
+
+overflow:hidden;
+
+}
+
+/* HEADER */
+
+header{
+
+text-align:center;
+
+padding:25px;
+
+border-bottom:1px solid var(--border);
+
+background:rgba(0,10,20,.7);
+
+}
+
+header h1{
+
+font-size:36px;
+
+letter-spacing:8px;
+
+font-weight:700;
+
+text-shadow:
+0 0 10px #00e5ff,
+0 0 25px #00e5ff,
+0 0 40px #00e5ff;
+
+}
+
+header p{
+
+font-size:12px;
+
+opacity:.7;
+
+margin-top:5px;
+
+}
+
+/* GRID */
+
+main{
+
+max-width:1000px;
+
+margin:auto;
+
+margin-top:20px;
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+grid-template-rows:repeat(2,200px);
+
+gap:12px;
+
+}
+
+/* BOX */
+
+.box{
+
+background:var(--glass);
+
+border:1px solid var(--border);
+
+border-radius:14px;
+
+padding:10px;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:space-between;
+
+backdrop-filter:blur(10px);
+
+transition:.3s;
+
+box-shadow:0 0 15px rgba(0,229,255,.15);
+
+}
+
+.box:hover{
+
+border-color:var(--accent);
+
+transform:translateY(-3px);
+
+}
+
+/* TITLE */
+
+h2{
+
+font-size:13px;
+
+color:var(--accent);
+
+border-left:3px solid var(--accent);
+
+padding-left:8px;
+
+}
+
+/* MEMORY */
+
+.memory{
+
+font-size:12px;
+
+opacity:.8;
+
+}
+
+/* BUTTON */
+
+button{
+
+padding:6px;
+
+font-size:12px;
+
+border-radius:6px;
+
+background:rgba(0,229,255,.1);
+
+border:1px solid var(--accent);
+
+color:var(--accent);
+
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:var(--accent);
+
+color:#001a33;
+
+}
+
+/* MUSIC */
+
+select{
+
+background:#001a33;
+
+border:1px solid var(--border);
+
+color:white;
+
+padding:5px;
+
+border-radius:5px;
+
+}
+
+/* GAME */
+
+canvas{
+
+width:100%;
+
+height:110px;
+
+background:rgba(0,0,0,.3);
+
+border-radius:8px;
+
+}
+
+/* DECOR */
+
+.fish{
+
+position:fixed;
+
+font-size:26px;
+
+opacity:.35;
+
+animation:fishMove linear infinite;
+
+}
+
+@keyframes fishMove{
+
+0%{transform:translateX(-100px)}
+
+100%{transform:translateX(110vw)}
+
+}
+
+.bubble{
+
+position:fixed;
+
+bottom:-40px;
+
+opacity:.2;
+
+animation:bubbleUp linear infinite;
+
+}
+
+@keyframes bubbleUp{
+
+0%{transform:translateY(0)}
+
+100%{transform:translateY(-110vh)}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🏛 SWAN OCEAN</h1>
+<p>Memories of Atlantis</p>
+
+</header>
+
+<main>
+
+<!-- MEMORY -->
+
+<div class="box">
+
+<h2>💎 Hành Lang Ký Ức</h2>
+
+<div class="memory">
+"Swan Ocean bắt đầu hành trình của mình."
+</div>
+
+<button onclick="addMemory()">Thêm ký ức</button>
+
+</div>
+
+<!-- GAME -->
+
+<div class="box">
+
+<h2>🎮 Săn Ngọc Trai</h2>
+
+<canvas id="game"></canvas>
+
+<div id="scoreBoard">Score: 0</div>
+
+</div>
+
+<!-- MUSIC -->
+
+<div class="box">
+
+<h2>🎵 Nhạc Đại Dương</h2>
+
+<select id="musicSelect">
+
+<option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+Ocean Melody
+</option>
+
+<option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+Deep Water
+</option>
+
+</select>
+
+<button onclick="playMusic()">Play</button>
+
+<audio id="bgMusic" loop></audio>
+
+</div>
+
+<!-- GALLERY -->
+
+<div class="box">
+
+<h2>🖼 Gallery</h2>
+
+<img
+src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+style="width:100%;height:100px;object-fit:cover;border-radius:6px">
+
+</div>
+
+<!-- GAME HUB -->
+
+<div class="box">
+
+<h2>🕹 Game Center</h2>
+
+<button>Pikachu</button> <button>Đào vàng</button> <button>Bắn cá</button>
+
+</div>
+
+<!-- MAP -->
+
+<div class="box">
+
+<h2>🗺 Bản Đồ Atlantis</h2>
+
+<div style="font-size:12px;opacity:.8">
+
+🏛 Cung điện pha lê<br>
+🐠 Rạn san hô<br>
+⚓ Thành phố chìm
+
+</div>
+
+</div>
+
+</main>
+
+<script>
+
+/* MUSIC */
+
+const music=document.getElementById("bgMusic")
+const selector=document.getElementById("musicSelect")
+
+function playMusic(){
+
+music.src=selector.value
+
+music.play()
+
+}
+
+/* MEMORY */
+
+function addMemory(){
+
+let text=prompt("Bạn muốn lưu ký ức gì?")
+
+if(text){
+
+document.querySelector(".memory").innerText=text
+
+}
+
+}
+
+/* GAME */
+
+const canvas=document.getElementById("game")
+const ctx=canvas.getContext("2d")
+
+canvas.width=canvas.offsetWidth
+canvas.height=canvas.offsetHeight
+
+let target={x:50,y:50}
+let score=0
+
+function move(){
+
+target.x=Math.random()*canvas.width
+target.y=Math.random()*canvas.height
+
+}
+
+canvas.addEventListener("mousemove",e=>{
+
+let r=canvas.getBoundingClientRect()
+
+let mx=e.clientX-r.left
+let my=e.clientY-r.top
+
+if(Math.hypot(mx-target.x,my-target.y)<20){
+
+score++
+
+document.getElementById("scoreBoard").innerText="Score: "+score
+
+move()
+
+}
+
+function updateClock() {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2, '0');
+    const m = String(now.getMinutes()).padStart(2, '0');
+    const s = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById('clock').innerText = `${h}:${m}:${s}`;
+    
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('date').innerText = now.toLocaleDateString('vi-VN', options);
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+})
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+ctx.fillStyle="white"
+
+ctx.beginPath()
+
+ctx.arc(target.x,target.y,8,0,Math.PI*2)
+
+ctx.fill()
+
+requestAnimationFrame(draw)
+
+}
+
+draw()
+
+/* DECOR */
+
+for(let i=0;i<6;i++){
+
+let f=document.createElement("div")
+
+f.className="fish"
+
+f.innerText="🐟"
+
+f.style.top=Math.random()*90+"vh"
+
+f.style.animationDuration=15+Math.random()*15+"s"
+
+document.body.appendChild(f)
+
+}
+
+for(let i=0;i<15;i++){
+
+let b=document.createElement("div")
+
+b.className="bubble"
+
+b.innerText="🫧"
+
+b.style.left=Math.random()*100+"vw"
+
+b.style.animationDuration=5+Math.random()*10+"s"
+
+document.body.appendChild(b)
+
+}
+
+</script>
+
+</body>
+</html>
