@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <html lang="vi">
-
 <head>
 
 <meta charset="UTF-8">
@@ -45,6 +44,7 @@ overflow:hidden;
 header{
 
 text-align:center;
+
 padding:25px;
 
 border-bottom:1px solid var(--border);
@@ -56,7 +56,9 @@ background:rgba(0,10,20,.7);
 header h1{
 
 font-size:36px;
+
 letter-spacing:8px;
+
 font-weight:700;
 
 text-shadow:
@@ -69,7 +71,9 @@ text-shadow:
 header p{
 
 font-size:12px;
+
 opacity:.7;
+
 margin-top:5px;
 
 }
@@ -79,12 +83,15 @@ margin-top:5px;
 main{
 
 max-width:1000px;
+
 margin:auto;
+
 margin-top:20px;
 
 display:grid;
 
 grid-template-columns:repeat(3,1fr);
+
 grid-template-rows:repeat(2,minmax(200px,auto));
 
 gap:12px;
@@ -96,6 +103,7 @@ gap:12px;
 .box{
 
 background:var(--glass);
+
 border:1px solid var(--border);
 
 border-radius:14px;
@@ -103,6 +111,7 @@ border-radius:14px;
 padding:10px;
 
 display:flex;
+
 flex-direction:column;
 
 justify-content:space-between;
@@ -222,6 +231,7 @@ animation:fishMove linear infinite;
 @keyframes fishMove{
 
 0%{transform:translateX(-100px)}
+
 100%{transform:translateX(110vw)}
 
 }
@@ -241,6 +251,7 @@ animation:bubbleUp linear infinite;
 @keyframes bubbleUp{
 
 0%{transform:translateY(0)}
+
 100%{transform:translateY(-110vh)}
 
 }
@@ -304,7 +315,6 @@ animation:bubbleUp linear infinite;
 <option value="music/song8.mp3">Crystal Sea</option>
 <option value="music/song9.mp3">Digital Ocean</option>
 <option value="music/song10.mp3">Infinity Blue</option>
-
 </select>
 
 <button id="musicBtn" onclick="toggleMusic()">▶</button>
@@ -326,7 +336,7 @@ style="width:100%;height:100px;object-fit:cover;border-radius:6px">
 </div>
 
 <!-- GAME HUB -->
-
+<!-- GAME HUB -->
 <div class="box wide">
 
 <h2>🕹 TRẠM ĐIỀU KHIỂN</h2>
@@ -334,13 +344,22 @@ style="width:100%;height:100px;object-fit:cover;border-radius:6px">
 <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19"
 style="width:100%;height:90px;object-fit:cover;border-radius:10px;margin:6px 0;">
 
-<div style="display:flex;gap:10px;justify-content:center;">
+<div class="gameHub">
 
-<button onclick="window.location.href='pikachu.html'">💎 PIKACHU</button>
+<div class="gameCard" onclick="window.location.href='pikachu.html'">
+<div class="gameIcon">💎</div>
+<div class="gameName">PIKACHU</div>
+</div>
 
-<button onclick="window.location.href='miner.html'">⛏ ĐÀO VÀNG</button>
+<div class="gameCard" onclick="window.location.href='miner.html'">
+<div class="gameIcon">⛏</div>
+<div class="gameName">ĐÀO VÀNG</div>
+</div>
 
-<button onclick="window.location.href='shooter.html'">🏹 BẮN CÁ</button>
+<div class="gameCard" onclick="window.location.href='shooter.html'">
+<div class="gameIcon">🏹</div>
+<div class="gameName">BẮN CÁ</div>
+</div>
 
 </div>
 
@@ -369,11 +388,10 @@ style="width:100%;height:80px;object-fit:cover;border-radius:8px;margin:6px 0;">
 
 <script>
 
-/* MUSIC PLAYER */
+/* MUSIC */
 
 const music=document.getElementById("bgMusic")
 const selector=document.getElementById("musicSelect")
-const musicBtn=document.getElementById("musicBtn")
 
 let playing=false
 
@@ -384,7 +402,7 @@ if(!playing){
 music.src=selector.value
 music.play()
 
-musicBtn.innerText="⏸"
+document.getElementById("musicBtn").innerText="⏸"
 
 playing=true
 
@@ -392,13 +410,12 @@ playing=true
 
 music.pause()
 
-musicBtn.innerText="▶"
+document.getElementById("musicBtn").innerText="▶"
 
 playing=false
 
 }
 
-}
 
 /* MEMORY */
 
@@ -414,27 +431,18 @@ document.querySelector(".memory").innerText=text
 
 }
 
-/* PEARL GAME */
+/* GAME */
 
 const canvas=document.getElementById("game")
 const ctx=canvas.getContext("2d")
 
-function resizeCanvas(){
-
 canvas.width=canvas.offsetWidth
 canvas.height=canvas.offsetHeight
 
-}
-
-resizeCanvas()
-
-window.addEventListener("resize",resizeCanvas)
-
 let target={x:50,y:50}
-
 let score=0
 
-function moveTarget(){
+function move(){
 
 target.x=Math.random()*canvas.width
 target.y=Math.random()*canvas.height
@@ -454,11 +462,9 @@ score++
 
 document.getElementById("scoreBoard").innerText="Score: "+score
 
-moveTarget()
+move()
 
 }
-
-})
 
 function draw(){
 
@@ -478,7 +484,7 @@ requestAnimationFrame(draw)
 
 draw()
 
-/* DECOR EFFECT */
+/* DECOR */
 
 for(let i=0;i<6;i++){
 
