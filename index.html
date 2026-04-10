@@ -92,7 +92,7 @@ display:grid;
 
 grid-template-columns:repeat(3,1fr);
 
-grid-template-rows:repeat(2,200px);
+grid-template-rows:repeat(2,minmax(200px,auto));
 
 gap:12px;
 
@@ -264,7 +264,7 @@ animation:bubbleUp linear infinite;
 
 <header>
 
-<h1>🏛 SWAN OCEAN</h1>
+<h1>🏛 DREAM OCEAN</h1>
 <p>Memories of Atlantis</p>
 
 </header>
@@ -278,7 +278,7 @@ animation:bubbleUp linear infinite;
 <h2>💎 Hành Lang Ký Ức</h2>
 
 <div class="memory">
-"Swan Ocean bắt đầu hành trình của mình."
+"Dream Ocean cùng bắt đầu hành trình của mình."
 </div>
 
 <button onclick="addMemory()">Thêm ký ức</button>
@@ -305,17 +305,19 @@ animation:bubbleUp linear infinite;
 
 <select id="musicSelect">
 
-<option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
-Ocean Melody
-</option>
-
-<option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
-Deep Water
-</option>
-
+<option value="music/song1.mp3">Bring Me Back Style 1</option>
+<option value="music/song2.mp3">Bring Me Back Style 2</option>
+<option value="music/song3.mp3">Bring Me Back Style 3</option>
+<option value="music/song4.mp3">Future Ocean</option>
+<option value="music/song5.mp3">Neon Atlantis</option>
+<option value="music/song6.mp3">Dream Dive</option>
+<option value="music/song7.mp3">Deep Waves</option>
+<option value="music/song8.mp3">Crystal Sea</option>
+<option value="music/song9.mp3">Digital Ocean</option>
+<option value="music/song10.mp3">Infinity Blue</option>
 </select>
 
-<button onclick="playMusic()">Play</button>
+<button id="musicBtn" onclick="toggleMusic()">▶</button>
 
 <audio id="bgMusic" loop></audio>
 
@@ -334,13 +336,18 @@ style="width:100%;height:100px;object-fit:cover;border-radius:6px">
 </div>
 
 <!-- GAME HUB -->
+<div class="box wide">
+    <h2>🕹 TRẠM ĐIỀU KHIỂN</h2>
 
-<div class="box">
+    <!-- Banner Atlantis -->
+    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19"
+style="width:100%;height:90px;object-fit:cover;border-radius:10px;margin:6px 0;">
 
-<h2>🕹 Game Center</h2>
-
-<button>Pikachu</button> <button>Đào vàng</button> <button>Bắn cá</button>
-
+    <div style="display: flex; gap: 10px; justify-content: center;">
+        <button onclick="window.location.href='pikachu.html'">💎 PIKACHU</button>
+        <button onclick="window.location.href='miner.html'">⛏ ĐÀO VÀNG</button>
+        <button onclick="window.location.href='shooter.html'">🏹 BẮN CÁ</button>
+    </div>
 </div>
 
 <!-- MAP -->
@@ -348,6 +355,9 @@ style="width:100%;height:100px;object-fit:cover;border-radius:6px">
 <div class="box">
 
 <h2>🗺 Bản Đồ Atlantis</h2>
+
+<img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21"
+style="width:100%;height:80px;object-fit:cover;border-radius:8px;margin:6px 0;">
 
 <div style="font-size:12px;opacity:.8">
 
