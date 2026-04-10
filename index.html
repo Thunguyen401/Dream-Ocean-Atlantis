@@ -4,254 +4,11 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>🌊 Đảo Mộng Mơ</title>
+<title>Dream Ocean</title>
 
-<style>
-
-:root{
---glass:rgba(0,30,60,.65);
---border:rgba(255,255,255,.15);
---accent:#00e5ff;
-}
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box
-}
-
-body{
-
-font-family:Segoe UI,Arial;
-
-background:
-linear-gradient(rgba(0,30,50,.55),rgba(0,15,30,.75)),
-url("https://images.unsplash.com/photo-1582967788606-a171c1080cb0?q=80&w=2000")
-center/cover fixed;
-
-color:#e0f7fa;
-
-min-height:100vh;
-
-overflow:hidden;
-
-}
-
-/* HEADER */
-
-header{
-
-text-align:center;
-padding:25px;
-
-border-bottom:1px solid var(--border);
-
-background:rgba(0,10,20,.7);
-
-}
-
-header h1{
-
-font-size:36px;
-letter-spacing:6px;
-
-text-shadow:0 0 15px #00e5ff;
-
-}
-
-.gold{
-
-margin-top:5px;
-
-font-size:14px;
-
-color:#ffd700;
-
-}
-
-/* GRID */
-
-main{
-
-max-width:1000px;
-
-margin:auto;
-
-margin-top:20px;
-
-display:grid;
-
-grid-template-columns:repeat(3,1fr);
-
-grid-template-rows:repeat(2,minmax(200px,auto));
-
-gap:12px;
-
-padding:10px;
-
-}
-
-/* BOX */
-
-.box{
-
-background:var(--glass);
-
-border:1px solid var(--border);
-
-border-radius:14px;
-
-padding:10px;
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:space-between;
-
-backdrop-filter:blur(10px);
-
-transition:.3s;
-
-}
-
-.box:hover{
-
-border-color:var(--accent);
-
-transform:translateY(-3px);
-
-}
-
-h2{
-
-font-size:13px;
-
-color:var(--accent);
-
-border-left:3px solid var(--accent);
-
-padding-left:8px;
-
-margin-bottom:5px;
-
-}
-
-/* BUTTON */
-
-button{
-
-padding:6px;
-
-font-size:12px;
-
-border-radius:6px;
-
-background:rgba(0,229,255,.1);
-
-border:1px solid var(--accent);
-
-color:var(--accent);
-
-cursor:pointer;
-
-}
-
-button:hover{
-
-background:var(--accent);
-
-color:#001a33;
-
-}
-
-/* MUSIC */
-
-.music{
-
-display:flex;
-
-gap:5px;
-
-align-items:center;
-
-}
-
-/* CANVAS */
-
-canvas{
-
-width:100%;
-
-height:110px;
-
-background:rgba(0,0,0,.3);
-
-border-radius:8px;
-
-}
-
-/* MAP */
-
-.point{
-
-cursor:pointer;
-
-padding:3px;
-
-}
-
-.point:hover{
-
-color:#00e5ff;
-
-}
-
-/* DECOR */
-
-.fish{
-
-position:fixed;
-
-font-size:26px;
-
-opacity:.35;
-
-animation:fishMove linear infinite;
-
-}
-
-@keyframes fishMove{
-
-0%{transform:translateX(-100px)}
-
-100%{transform:translateX(110vw)}
-
-}
-
-.bubble{
-
-position:fixed;
-
-bottom:-40px;
-
-opacity:.2;
-
-animation:bubbleUp linear infinite;
-
-}
-
-@keyframes bubbleUp{
-
-0%{transform:translateY(0)}
-
-100%{transform:translateY(-110vh)}
-
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -259,12 +16,10 @@ animation:bubbleUp linear infinite;
 
 <header>
 
-<h1>🌊 ĐẢO MỘNG MƠ</h1>
+<h1>🌊 DREAM OCEAN</h1>
 
 <div class="gold">
-
 💰 Gold: <span id="gold">0</span>
-
 </div>
 
 </header>
@@ -276,9 +31,7 @@ animation:bubbleUp linear infinite;
 <h2>💎 Hành Lang Ký Ức</h2>
 
 <div id="memory">
-
-"Hành trình đại dương bắt đầu."
-
+Hành trình đại dương bắt đầu.
 </div>
 
 <button onclick="addMemory()">Thêm ký ức</button>
@@ -289,7 +42,7 @@ animation:bubbleUp linear infinite;
 
 <h2>🎮 Săn Ngọc Trai</h2>
 
-<canvas id="game"></canvas>
+<canvas id="pearl-game"></canvas>
 
 <div>Score: <span id="score">0</span></div>
 
@@ -299,23 +52,14 @@ animation:bubbleUp linear infinite;
 
 <h2>🎵 Nhạc Đại Dương</h2>
 
-<div class="music">
-
 <select id="musicSelect">
 
-<option value="music/song1.mp3">Bring Me Back Style</option>
-
-<option value="music/song2.mp3">Future Ocean</option>
-
-<option value="music/song3.mp3">Neon Atlantis</option>
-
-<option value="music/song4.mp3">Dream Dive</option>
+<option value="music/song1.mp3">Bring me back style</option>
+<option value="music/song2.mp3">Future ocean</option>
 
 </select>
 
-<button onclick="toggleMusic()">▶</button>
-
-</div>
+<button onclick="toggleMusic()">Play</button>
 
 <audio id="bgMusic" loop></audio>
 
@@ -325,9 +69,7 @@ animation:bubbleUp linear infinite;
 
 <h2>🖼 Gallery</h2>
 
-<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
-
-style="width:100%;height:100px;object-fit:cover;border-radius:6px">
+<img src="images/ocean.jpg">
 
 </div>
 
@@ -335,193 +77,27 @@ style="width:100%;height:100px;object-fit:cover;border-radius:6px">
 
 <h2>🕹 Trạm Điều Khiển</h2>
 
-<button onclick="openGame('pikachu.html')">💎 Pikachu</button>
+<button onclick="location.href='pikachu.html'">💎 Pikachu</button>
 
-<button onclick="openGame('miner.html')">⛏ Đào vàng</button>
+<button onclick="location.href='miner.html'">⛏ Đào vàng</button>
 
-<button onclick="openGame('shooter.html')">🏹 Bắn cá</button>
+<button onclick="location.href='shooter.html'">🏹 Bắn cá</button>
 
 </div>
 
 <div class="box">
 
-<h2>🗺 Bản Đồ Atlantis</h2>
+<h2>🗺 Bản đồ Atlantis</h2>
 
-<div class="point" onclick="discover('Cung điện pha lê')">🏛 Cung điện pha lê</div>
-
-<div class="point" onclick="discover('Rạn san hô')">🐠 Rạn san hô</div>
-
-<div class="point" onclick="discover('Thành phố chìm')">⚓ Thành phố chìm</div>
+<div onclick="discover('Cung điện pha lê')">🏛 Cung điện pha lê</div>
+<div onclick="discover('Rạn san hô')">🐠 Rạn san hô</div>
+<div onclick="discover('Thành phố chìm')">⚓ Thành phố chìm</div>
 
 </div>
 
 </main>
 
-<script>
-
-/* GOLD */
-
-let gold = localStorage.getItem("gold") || 0
-
-document.getElementById("gold").innerText = gold
-
-function addGold(n){
-
-gold = parseInt(gold) + n
-
-localStorage.setItem("gold",gold)
-
-document.getElementById("gold").innerText = gold
-
-}
-
-/* MEMORY */
-
-function addMemory(){
-
-let text = prompt("Bạn muốn lưu ký ức gì?")
-
-if(text){
-
-document.getElementById("memory").innerText = text
-
-}
-
-}
-
-/* MUSIC */
-
-const music = document.getElementById("bgMusic")
-
-const selector = document.getElementById("musicSelect")
-
-let playing=false
-
-function toggleMusic(){
-
-if(!playing){
-
-music.src = selector.value
-
-music.play()
-
-playing=true
-
-}else{
-
-music.pause()
-
-playing=false
-
-}
-
-}
-
-/* PEARL GAME */
-
-const canvas=document.getElementById("game")
-
-const ctx=canvas.getContext("2d")
-
-canvas.width=canvas.offsetWidth
-
-canvas.height=canvas.offsetHeight
-
-let target={x:50,y:50}
-
-let score=0
-
-canvas.addEventListener("mousemove",e=>{
-
-let r=canvas.getBoundingClientRect()
-
-let mx=e.clientX-r.left
-
-let my=e.clientY-r.top
-
-if(Math.hypot(mx-target.x,my-target.y)<20){
-
-score++
-
-document.getElementById("score").innerText=score
-
-addGold(1)
-
-target.x=Math.random()*canvas.width
-
-target.y=Math.random()*canvas.height
-
-}
-
-})
-
-function draw(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height)
-
-ctx.fillStyle="white"
-
-ctx.beginPath()
-
-ctx.arc(target.x,target.y,8,0,Math.PI*2)
-
-ctx.fill()
-
-requestAnimationFrame(draw)
-
-}
-
-draw()
-
-function discover(place){
-
-alert("Bạn vừa khám phá: "+place)
-
-addGold(10)
-
-}
-
-function openGame(url){
-
-window.location.href=url
-
-}
-
-/* DECOR */
-
-for(let i=0;i<6;i++){
-
-let f=document.createElement("div")
-
-f.className="fish"
-
-f.innerText="🐟"
-
-f.style.top=Math.random()*90+"vh"
-
-f.style.animationDuration=15+Math.random()*15+"s"
-
-document.body.appendChild(f)
-
-}
-
-for(let i=0;i<15;i++){
-
-let b=document.createElement("div")
-
-b.className="bubble"
-
-b.innerText="🫧"
-
-b.style.left=Math.random()*100+"vw"
-
-b.style.animationDuration=5+Math.random()*10+"s"
-
-document.body.appendChild(b)
-
-}
-
-</script>
+<script src="main.js"></script>
 
 </body>
 </html>
