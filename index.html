@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <html lang="vi">
-
 <head>
 
 <meta charset="UTF-8">
@@ -20,7 +19,7 @@
 *{
 margin:0;
 padding:0;
-box-sizing:border-box;
+box-sizing:border-box
 }
 
 body{
@@ -33,7 +32,9 @@ url("https://images.unsplash.com/photo-1582967788606-a171c1080cb0?q=80&w=2000")
 center/cover fixed;
 
 color:#e0f7fa;
+
 min-height:100vh;
+
 overflow:hidden;
 
 }
@@ -44,7 +45,9 @@ header{
 
 text-align:center;
 padding:25px;
+
 border-bottom:1px solid var(--border);
+
 background:rgba(0,10,20,.7);
 
 }
@@ -53,6 +56,7 @@ header h1{
 
 font-size:36px;
 letter-spacing:6px;
+
 text-shadow:0 0 15px #00e5ff;
 
 }
@@ -60,7 +64,9 @@ text-shadow:0 0 15px #00e5ff;
 .gold{
 
 margin-top:5px;
+
 font-size:14px;
+
 color:#ffd700;
 
 }
@@ -70,12 +76,15 @@ color:#ffd700;
 main{
 
 max-width:1000px;
+
 margin:auto;
+
 margin-top:20px;
 
 display:grid;
 
 grid-template-columns:repeat(3,1fr);
+
 grid-template-rows:repeat(2,minmax(200px,auto));
 
 gap:12px;
@@ -89,13 +98,17 @@ padding:10px;
 .box{
 
 background:var(--glass);
+
 border:1px solid var(--border);
+
 border-radius:14px;
 
 padding:10px;
 
 display:flex;
+
 flex-direction:column;
+
 justify-content:space-between;
 
 backdrop-filter:blur(10px);
@@ -107,6 +120,7 @@ transition:.3s;
 .box:hover{
 
 border-color:var(--accent);
+
 transform:translateY(-3px);
 
 }
@@ -118,6 +132,7 @@ font-size:13px;
 color:var(--accent);
 
 border-left:3px solid var(--accent);
+
 padding-left:8px;
 
 margin-bottom:5px;
@@ -129,6 +144,7 @@ margin-bottom:5px;
 button{
 
 padding:6px;
+
 font-size:12px;
 
 border-radius:6px;
@@ -146,6 +162,7 @@ cursor:pointer;
 button:hover{
 
 background:var(--accent);
+
 color:#001a33;
 
 }
@@ -155,7 +172,9 @@ color:#001a33;
 .music{
 
 display:flex;
+
 gap:5px;
+
 align-items:center;
 
 }
@@ -165,6 +184,7 @@ align-items:center;
 canvas{
 
 width:100%;
+
 height:110px;
 
 background:rgba(0,0,0,.3);
@@ -178,6 +198,7 @@ border-radius:8px;
 .point{
 
 cursor:pointer;
+
 padding:3px;
 
 }
@@ -193,6 +214,7 @@ color:#00e5ff;
 .fish{
 
 position:fixed;
+
 font-size:26px;
 
 opacity:.35;
@@ -204,6 +226,7 @@ animation:fishMove linear infinite;
 @keyframes fishMove{
 
 0%{transform:translateX(-100px)}
+
 100%{transform:translateX(110vw)}
 
 }
@@ -211,6 +234,7 @@ animation:fishMove linear infinite;
 .bubble{
 
 position:fixed;
+
 bottom:-40px;
 
 opacity:.2;
@@ -222,6 +246,7 @@ animation:bubbleUp linear infinite;
 @keyframes bubbleUp{
 
 0%{transform:translateY(0)}
+
 100%{transform:translateY(-110vh)}
 
 }
@@ -237,30 +262,28 @@ animation:bubbleUp linear infinite;
 <h1>🌊 ĐẢO MỘNG MƠ</h1>
 
 <div class="gold">
+
 💰 Gold: <span id="gold">0</span>
+
 </div>
 
 </header>
 
 <main>
 
-<!-- MEMORY -->
-
 <div class="box">
 
 <h2>💎 Hành Lang Ký Ức</h2>
 
 <div id="memory">
+
 "Hành trình đại dương bắt đầu."
-</div>
-
-<button onclick="addMemory()">
-Thêm ký ức
-</button>
 
 </div>
 
-<!-- GAME -->
+<button onclick="addMemory()">Thêm ký ức</button>
+
+</div>
 
 <div class="box">
 
@@ -268,13 +291,9 @@ Thêm ký ức
 
 <canvas id="game"></canvas>
 
-<div>
-Score: <span id="score">0</span>
-</div>
+<div>Score: <span id="score">0</span></div>
 
 </div>
-
-<!-- MUSIC -->
 
 <div class="box">
 
@@ -302,19 +321,15 @@ Score: <span id="score">0</span>
 
 </div>
 
-<!-- GALLERY -->
-
 <div class="box">
 
 <h2>🖼 Gallery</h2>
 
-<img
-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+
 style="width:100%;height:100px;object-fit:cover;border-radius:6px">
 
 </div>
-
-<!-- GAME HUB -->
 
 <div class="box">
 
@@ -328,23 +343,15 @@ style="width:100%;height:100px;object-fit:cover;border-radius:6px">
 
 </div>
 
-<!-- MAP -->
-
 <div class="box">
 
 <h2>🗺 Bản Đồ Atlantis</h2>
 
-<div class="point" onclick="discover('Cung điện pha lê')">
-🏛 Cung điện pha lê
-</div>
+<div class="point" onclick="discover('Cung điện pha lê')">🏛 Cung điện pha lê</div>
 
-<div class="point" onclick="discover('Rạn san hô')">
-🐠 Rạn san hô
-</div>
+<div class="point" onclick="discover('Rạn san hô')">🐠 Rạn san hô</div>
 
-<div class="point" onclick="discover('Thành phố chìm')">
-⚓ Thành phố chìm
-</div>
+<div class="point" onclick="discover('Thành phố chìm')">⚓ Thành phố chìm</div>
 
 </div>
 
@@ -355,6 +362,7 @@ style="width:100%;height:100px;object-fit:cover;border-radius:6px">
 /* GOLD */
 
 let gold = localStorage.getItem("gold") || 0
+
 document.getElementById("gold").innerText = gold
 
 function addGold(n){
@@ -384,57 +392,64 @@ document.getElementById("memory").innerText = text
 /* MUSIC */
 
 const music = document.getElementById("bgMusic")
+
 const selector = document.getElementById("musicSelect")
 
-let playing = false
+let playing=false
 
 function toggleMusic(){
 
 if(!playing){
 
 music.src = selector.value
+
 music.play()
 
-playing = true
+playing=true
 
 }else{
 
 music.pause()
 
-playing = false
+playing=false
 
 }
 
 }
 
-/* GAME PEARL */
+/* PEARL GAME */
 
-const canvas = document.getElementById("game")
-const ctx = canvas.getContext("2d")
+const canvas=document.getElementById("game")
 
-canvas.width = canvas.offsetWidth
-canvas.height = canvas.offsetHeight
+const ctx=canvas.getContext("2d")
 
-let target = {x:50,y:50}
-let score = 0
+canvas.width=canvas.offsetWidth
+
+canvas.height=canvas.offsetHeight
+
+let target={x:50,y:50}
+
+let score=0
 
 canvas.addEventListener("mousemove",e=>{
 
-let r = canvas.getBoundingClientRect()
+let r=canvas.getBoundingClientRect()
 
-let mx = e.clientX - r.left
-let my = e.clientY - r.top
+let mx=e.clientX-r.left
+
+let my=e.clientY-r.top
 
 if(Math.hypot(mx-target.x,my-target.y)<20){
 
 score++
 
-document.getElementById("score").innerText = score
+document.getElementById("score").innerText=score
 
 addGold(1)
 
-target.x = Math.random()*canvas.width
-target.y = Math.random()*canvas.height
+target.x=Math.random()*canvas.width
+
+target.y=Math.random()*canvas.height
 
 }
 
@@ -447,7 +462,9 @@ ctx.clearRect(0,0,canvas.width,canvas.height)
 ctx.fillStyle="white"
 
 ctx.beginPath()
+
 ctx.arc(target.x,target.y,8,0,Math.PI*2)
+
 ctx.fill()
 
 requestAnimationFrame(draw)
@@ -455,8 +472,6 @@ requestAnimationFrame(draw)
 }
 
 draw()
-
-/* MAP */
 
 function discover(place){
 
@@ -466,11 +481,9 @@ addGold(10)
 
 }
 
-/* GAME HUB */
-
 function openGame(url){
 
-window.location.href = url
+window.location.href=url
 
 }
 
