@@ -1,14 +1,251 @@
 <!DOCTYPE html>
 
 <html lang="vi">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Dream Ocean</title>
+<title>🏛 Swan Ocean – Atlantis Archive</title>
 
-<link rel="stylesheet" href="style.css">
+<style>
+
+:root{
+--glass:rgba(0,30,60,.65);
+--border:rgba(255,255,255,.15);
+--accent:#00e5ff;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:Segoe UI,Arial;
+
+background:
+linear-gradient(rgba(0,30,50,.55),rgba(0,15,30,.75)),
+url("https://images.unsplash.com/photo-1582967788606-a171c1080cb0?q=80&w=2000")
+center/cover fixed;
+
+color:#e0f7fa;
+
+min-height:100vh;
+
+overflow:hidden;
+
+}
+
+/* HEADER */
+
+header{
+
+text-align:center;
+padding:25px;
+
+border-bottom:1px solid var(--border);
+
+background:rgba(0,10,20,.7);
+
+}
+
+header h1{
+
+font-size:36px;
+letter-spacing:8px;
+font-weight:700;
+
+text-shadow:
+0 0 10px #00e5ff,
+0 0 25px #00e5ff,
+0 0 40px #00e5ff;
+
+}
+
+header p{
+
+font-size:12px;
+opacity:.7;
+margin-top:5px;
+
+}
+
+/* GRID */
+
+main{
+
+max-width:1000px;
+margin:auto;
+margin-top:20px;
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+grid-template-rows:repeat(2,minmax(200px,auto));
+
+gap:12px;
+
+}
+
+/* BOX */
+
+.box{
+
+background:var(--glass);
+border:1px solid var(--border);
+
+border-radius:14px;
+
+padding:10px;
+
+display:flex;
+flex-direction:column;
+
+justify-content:space-between;
+
+backdrop-filter:blur(10px);
+
+transition:.3s;
+
+box-shadow:0 0 15px rgba(0,229,255,.15);
+
+}
+
+.box:hover{
+
+border-color:var(--accent);
+
+transform:translateY(-3px);
+
+}
+
+/* TITLE */
+
+h2{
+
+font-size:13px;
+
+color:var(--accent);
+
+border-left:3px solid var(--accent);
+
+padding-left:8px;
+
+}
+
+/* MEMORY */
+
+.memory{
+
+font-size:12px;
+
+opacity:.8;
+
+}
+
+/* BUTTON */
+
+button{
+
+padding:6px;
+
+font-size:12px;
+
+border-radius:6px;
+
+background:rgba(0,229,255,.1);
+
+border:1px solid var(--accent);
+
+color:var(--accent);
+
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:var(--accent);
+
+color:#001a33;
+
+}
+
+/* MUSIC */
+
+select{
+
+background:#001a33;
+
+border:1px solid var(--border);
+
+color:white;
+
+padding:5px;
+
+border-radius:5px;
+
+}
+
+/* GAME */
+
+canvas{
+
+width:100%;
+
+height:110px;
+
+background:rgba(0,0,0,.3);
+
+border-radius:8px;
+
+}
+
+/* DECOR */
+
+.fish{
+
+position:fixed;
+
+font-size:26px;
+
+opacity:.35;
+
+animation:fishMove linear infinite;
+
+}
+
+@keyframes fishMove{
+
+0%{transform:translateX(-100px)}
+100%{transform:translateX(110vw)}
+
+}
+
+.bubble{
+
+position:fixed;
+
+bottom:-40px;
+
+opacity:.2;
+
+animation:bubbleUp linear infinite;
+
+}
+
+@keyframes bubbleUp{
+
+0%{transform:translateY(0)}
+100%{transform:translateY(-110vh)}
+
+}
+
+</style>
 
 </head>
 
@@ -16,37 +253,40 @@
 
 <header>
 
-<h1>🌊 DREAM OCEAN</h1>
-
-<div class="gold">
-💰 Gold: <span id="gold">0</span>
-</div>
+<h1>🏛 DREAM OCEAN</h1>
+<p>Memories of Atlantis</p>
 
 </header>
 
 <main>
 
+<!-- MEMORY -->
+
 <div class="box">
 
 <h2>💎 Hành Lang Ký Ức</h2>
 
-<div id="memory">
-Hành trình đại dương bắt đầu.
+<div class="memory">
+"Dream Ocean cùng bắt đầu hành trình của mình."
 </div>
 
 <button onclick="addMemory()">Thêm ký ức</button>
 
 </div>
 
+<!-- GAME -->
+
 <div class="box">
 
 <h2>🎮 Săn Ngọc Trai</h2>
 
-<canvas id="pearl-game"></canvas>
+<canvas id="game"></canvas>
 
-<div>Score: <span id="score">0</span></div>
+<div id="scoreBoard">Score: 0</div>
 
 </div>
+
+<!-- MUSIC -->
 
 <div class="box">
 
@@ -54,50 +294,225 @@ Hành trình đại dương bắt đầu.
 
 <select id="musicSelect">
 
-<option value="music/song1.mp3">Bring me back style</option>
-<option value="music/song2.mp3">Future ocean</option>
+<option value="music/song1.mp3">Bring Me Back Style 1</option>
+<option value="music/song2.mp3">Bring Me Back Style 2</option>
+<option value="music/song3.mp3">Bring Me Back Style 3</option>
+<option value="music/song4.mp3">Future Ocean</option>
+<option value="music/song5.mp3">Neon Atlantis</option>
+<option value="music/song6.mp3">Dream Dive</option>
+<option value="music/song7.mp3">Deep Waves</option>
+<option value="music/song8.mp3">Crystal Sea</option>
+<option value="music/song9.mp3">Digital Ocean</option>
+<option value="music/song10.mp3">Infinity Blue</option>
 
 </select>
 
-<button onclick="toggleMusic()">Play</button>
+<button id="musicBtn" onclick="toggleMusic()">▶</button>
 
 <audio id="bgMusic" loop></audio>
 
 </div>
 
+<!-- GALLERY -->
+
 <div class="box">
 
 <h2>🖼 Gallery</h2>
 
-<img src="images/ocean.jpg">
+<img
+src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+style="width:100%;height:100px;object-fit:cover;border-radius:6px">
 
 </div>
 
-<div class="box">
+<!-- GAME HUB -->
 
-<h2>🕹 Trạm Điều Khiển</h2>
+<div class="box wide">
 
-<button onclick="location.href='pikachu.html'">💎 Pikachu</button>
+<h2>🕹 TRẠM ĐIỀU KHIỂN</h2>
 
-<button onclick="location.href='miner.html'">⛏ Đào vàng</button>
+<img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19"
+style="width:100%;height:90px;object-fit:cover;border-radius:10px;margin:6px 0;">
 
-<button onclick="location.href='shooter.html'">🏹 Bắn cá</button>
+<div style="display:flex;gap:10px;justify-content:center;">
+
+<button onclick="window.location.href='pikachu.html'">💎 PIKACHU</button>
+
+<button onclick="window.location.href='miner.html'">⛏ ĐÀO VÀNG</button>
+
+<button onclick="window.location.href='shooter.html'">🏹 BẮN CÁ</button>
 
 </div>
 
+</div>
+
+<!-- MAP -->
+
 <div class="box">
 
-<h2>🗺 Bản đồ Atlantis</h2>
+<h2>🗺 Bản Đồ Atlantis</h2>
 
-<div onclick="discover('Cung điện pha lê')">🏛 Cung điện pha lê</div>
-<div onclick="discover('Rạn san hô')">🐠 Rạn san hô</div>
-<div onclick="discover('Thành phố chìm')">⚓ Thành phố chìm</div>
+<img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21"
+style="width:100%;height:80px;object-fit:cover;border-radius:8px;margin:6px 0;">
+
+<div style="font-size:12px;opacity:.8">
+
+🏛 Cung điện pha lê<br>
+🐠 Rạn san hô<br>
+⚓ Thành phố chìm
+
+</div>
 
 </div>
 
 </main>
 
-<script src="main.js"></script>
+<script>
+
+/* MUSIC PLAYER */
+
+const music=document.getElementById("bgMusic")
+const selector=document.getElementById("musicSelect")
+const musicBtn=document.getElementById("musicBtn")
+
+let playing=false
+
+function toggleMusic(){
+
+if(!playing){
+
+music.src=selector.value
+music.play()
+
+musicBtn.innerText="⏸"
+
+playing=true
+
+}else{
+
+music.pause()
+
+musicBtn.innerText="▶"
+
+playing=false
+
+}
+
+}
+
+/* MEMORY */
+
+function addMemory(){
+
+let text=prompt("Bạn muốn lưu ký ức gì?")
+
+if(text){
+
+document.querySelector(".memory").innerText=text
+
+}
+
+}
+
+/* PEARL GAME */
+
+const canvas=document.getElementById("game")
+const ctx=canvas.getContext("2d")
+
+function resizeCanvas(){
+
+canvas.width=canvas.offsetWidth
+canvas.height=canvas.offsetHeight
+
+}
+
+resizeCanvas()
+
+window.addEventListener("resize",resizeCanvas)
+
+let target={x:50,y:50}
+
+let score=0
+
+function moveTarget(){
+
+target.x=Math.random()*canvas.width
+target.y=Math.random()*canvas.height
+
+}
+
+canvas.addEventListener("mousemove",e=>{
+
+let r=canvas.getBoundingClientRect()
+
+let mx=e.clientX-r.left
+let my=e.clientY-r.top
+
+if(Math.hypot(mx-target.x,my-target.y)<20){
+
+score++
+
+document.getElementById("scoreBoard").innerText="Score: "+score
+
+moveTarget()
+
+}
+
+})
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+ctx.fillStyle="white"
+
+ctx.beginPath()
+
+ctx.arc(target.x,target.y,8,0,Math.PI*2)
+
+ctx.fill()
+
+requestAnimationFrame(draw)
+
+}
+
+draw()
+
+/* DECOR EFFECT */
+
+for(let i=0;i<6;i++){
+
+let f=document.createElement("div")
+
+f.className="fish"
+
+f.innerText="🐟"
+
+f.style.top=Math.random()*90+"vh"
+
+f.style.animationDuration=15+Math.random()*15+"s"
+
+document.body.appendChild(f)
+
+}
+
+for(let i=0;i<15;i++){
+
+let b=document.createElement("div")
+
+b.className="bubble"
+
+b.innerText="🫧"
+
+b.style.left=Math.random()*100+"vw"
+
+b.style.animationDuration=5+Math.random()*10+"s"
+
+document.body.appendChild(b)
+
+}
+
+</script>
 
 </body>
 </html>
