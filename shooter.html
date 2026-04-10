@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Bắn Cá Dream Ocean</title>
+
+<style>
+
+body{
+margin:0;
+background:radial-gradient(circle,#001a2c,#00050a);
+color:#00f2ff;
+font-family:Segoe UI;
+text-align:center;
+}
+
+canvas{
+border:2px solid #00f2ff;
+margin-top:20px;
+background:#000;
+}
+
+.back{
+display:inline-block;
+margin-top:10px;
+padding:8px 16px;
+border:1px solid #00f2ff;
+color:#00f2ff;
+text-decoration:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>🐟 BẮN CÁ ATLANTIS</h2>
+
+<canvas id="game" width="700" height="450"></canvas>
+
+<br>
+
+<a class="back" href="index.html">← Dream Ocean</a>
+
+<script>
+
+const canvas=document.getElementById("game")
+const ctx=canvas.getContext("2d")
+
+let bullets=[]
+let fish=[]
+let angle=0
+let score=0
+
+setInterval(()=>{
+
+fish.push({
+
+x:canvas.width+40,
+y:Math.random()*350+40,
+speed:2+Math.random()*2,
+size:15+Math.random()*10
+
+})
+
+},1000)
+
+function update(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+ctx.save()
+
+ctx.translate(canvas.width/2,canvas.height-20)
+
+ctx.rotate(angle)
+
+ctx.fillStyle="#00f2ff"
+
+ctx.fillRect(-5,-40,10,40)
+
+ctx.restore()
+
+bullets.forEach((b,i)=>{
+
+b.x+=Math.sin(b.a)*8
+b.y-=Math.cos(b.a)*8
+
+ctx.beginPath()
+ctx.arc(b.x,b.y,4,0,7)
+ctx.fillStyle="white"
+ctx.fill()
+
+})
+
+fish.forEach((f,i)=>{
+
+f.x-=f.speed
+
+ctx.beginPath()
+ctx.ellipse(f.x,f.y,f.size,f.size/2,0,0,7)
+ctx.fillStyle="orange"
+ctx.fill()
+
+})
+
+bullets.forEach((b,bi)=>{
+
+fish.forEach((f,fi)=>{
+
+if(Math.hypot(b.x-f.x,b.y-f.y)<f.size){
+
+fish.splice(fi,1)
+bullets.splice(bi,1)
+
+score++
+
+}
+
+})
+
+})
+
+ctx.fillStyle="#00f2ff"
+ctx.fillText("Score: "+score,20,20)
+
+requestAnimationFrame(update)
+
+}
+
+canvas.onclick=()=>{
+
+bullets.push({
+
+x:canvas.width/2,
+y:canvas.height-40,
+a:angle
+
+})
+
+}
+
+canvas.onmousemove=e=>{
+
+let rect=canvas.getBoundingClientRect()
+
+let x=e.clientX-rect.left
+
+angle=(x-canvas.width/2)/250
+
+}
+
+update()
+
+</script>
+
+</body>
+</html>
